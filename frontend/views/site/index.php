@@ -35,7 +35,7 @@ use yii\helpers\Html;
 							<div class="easy-block-v1">
 								<img src="<?=$thongbao['anhBia']?>">
 								<div class="easy-block-v1-badge rgba-purple">
-									<?php echo ($thongbao['tieuDe']);?>
+									<?php echo ($thongbao['ChuDe']);?>
 								</div>
 							</div>
 							<div class="block-grid-v2-info rounded-bottom>">

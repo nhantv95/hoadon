@@ -88,10 +88,8 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $Query = new Query;
-		$Query->select('id,tieuDe,anhBia')->from('news')->limit(3);
-		$command = $Query->createCommand();
-		$limit = $command->queryAll();	
+       $sql='SELECT `news`.anhBia, `news`.id, `news`.tieuDe, `loaithongbao`.ChuDe FROM `news`, `loaithongbao` where `news`.loaiThongBaoID=`loaithongbao`.id order by ngayDang desc limit 3' ;
+		$limit = Yii::$app->db->createCommand($sql)->queryAll();
 		
         return $this->render('index',['other'=>$limit]);
     }
@@ -100,7 +98,7 @@ class SiteController extends Controller
 	 public function actionAbout()
     {
 		$Query = new Query;
-		$Query->select('id,tieuDe')->from('news')->limit(3);
+		$Query->select('id,tieuDe')->from('news')->orderBy('ngayDang desc')->limit(3);
 		 $command = $Query->createCommand();
 		 $limit = $command->queryAll();
         return $this->render('about',['other'=>$limit]	);
@@ -141,7 +139,7 @@ class SiteController extends Controller
 	
 	public function actionThongbao(){
 		
-		$sql='SELECT `news`.anhBia, `news`.id, `news`.tieuDe, `loaithongbao`.ChuDe FROM `news`, `loaithongbao` where `news`.loaiThongBaoID=`loaithongbao`.id';
+		$sql='SELECT `news`.anhBia, `news`.id, `news`.tieuDe, `loaithongbao`.ChuDe FROM `news`, `loaithongbao` where `news`.loaiThongBaoID=`loaithongbao`.id order by ngayDang desc';
 		$rows = Yii::$app->db->createCommand($sql)->queryAll();
 		
 		return $this->render('thongbao', [ 'thongbao' => $rows ]);

@@ -23,7 +23,7 @@ use yii\helpers\Url;
 						<b> Công ty nước sạch chi nhánh quận Hà Đông </b><br>
 						<b> Địa chỉ:</b> Số x Mỗ Lao, Hà Đông<br>
 						Chúng tôi có nhiệm vụ cung cấp nước sạch tới toàn bộ khu dân cư và doanh nghiệp trong địa phần Quận Hà Đông. Chúng tôi làm việc với tinh thần trách nhiệm và hiệu quả để đem lại sự thuận tiện trong cuộc sống của khách hàng.<br><hr>
-						<b>Cách Dịch Vụ</b>
+						<b>Các Dịch Vụ</b>
 						<hr>
 						<b>Cách Liên Lạc:</b><br>
 						<b>Số điện thoại</b><br>

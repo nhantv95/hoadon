@@ -32,7 +32,7 @@ use yii\captcha\Captcha;
 						<?= $this->render('_form', [
 							'model' => $model,
 						]) ?>
-						<?php var_dump (Yii::$app->user->identity->id); ?>
+						
 					</div>
 				</div>
 				<div class="col col-sm-8 col-lg-8">
