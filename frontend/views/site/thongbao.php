@@ -6,7 +6,7 @@ use yii\helpers\Url;
 		<h1 class="pull-left">Tin Tức </h1>
 		<ul class="pull-right breadcrumb">       
 			<li class="active">
-				<a href="/">Trang chủ</a>/Tin Tức
+				<a href="<?= Url::home(); ?>">Trang chủ</a>/Thông báo
 			</li>
         </ul>
 	</div>
@@ -32,6 +32,36 @@ use yii\helpers\Url;
 							</div>
 						</div>
 				<?php endforeach;?>
+			<div style = "clear:both"><br></div>
+					<div class="col col-lg-12" > 
+						<ul class="pagination" style="float:right">
+							<li><a href="<?=Url::to(['site/thongbao'])?>&i=<?php if($i!=0) echo $i-1; else echo 0;?>">«</a></li>
+							<?php 
+								$dem;
+								$start=1;
+								$end=$count;
+								if($count>6)
+									$dem=6;
+								else
+									$dem=$count;
+								if($i>=6 && ($i+6)<$count){
+									$start = $i;
+									$end=$i+5;
+								}
+								else if($i>=6 && ($i+6)>$count){
+									$start=$i;
+									$end=$count;
+								}
+								
+								for($j=$start;$j<=$end;$j++):
+							?>
+									
+									<li><a href="<?=Url::to(['site/thongbao'])?>&i=<?=$j-1?>" <?php if($i==$j-1) echo"class='active'";?>><?=$j?></a></li>
+							<?php endfor?>	
+							<li><a href="<?=Url::to(['site/thongbao'])?>&i=<?php if ($i<$count-1) echo $i+1; else echo $i;?>">»</a></li>
+						</ul>	
+					</div>
+				<div style="clear:both"></div>
 			<div style="clear:both"></div>
 			</div>
 		</div>

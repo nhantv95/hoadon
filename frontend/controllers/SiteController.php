@@ -236,12 +236,16 @@ class SiteController extends Controller
         ]);
     }
 	
-	public function actionThongbao(){
-		
-		$sql='SELECT `news`.anhBia, `news`.id, `news`.tieuDe, `loaithongbao`.ChuDe FROM `news`, `loaithongbao` where `news`.loaiThongBaoID=`loaithongbao`.id order by ngayDang desc';
+	public function actionThongbao($i){
+		$pagin = $i*9;
+		$sql='SELECT `news`.anhBia, `news`.id, `news`.tieuDe, `loaithongbao`.ChuDe FROM `news`, `loaithongbao` where `news`.loaiThongBaoID=`loaithongbao`.id order by ngayDang desc limit 9 offset '.$pagin.'';
 		$rows = Yii::$app->db->createCommand($sql)->queryAll();
-		
-		return $this->render('thongbao', [ 'thongbao' => $rows ]);
+		if( News::find()->count()%9==0)
+			$num=News::find()->count()/9;
+		else
+			$num=News::find()->count()/9+1;
+		settype($num, "integer");
+		return $this->render('thongbao', [ 'thongbao' => $rows,'i'=>$i,'count'=>$num ]);
 	}
 	public function actionDetail($id){
 		//$rows = News::find()->where(['id' => $id])->one();

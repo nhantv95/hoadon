@@ -91,6 +91,13 @@ AppAsset::register($this);
             //});
         });
     </script>
+	<script>
+			$(".user-form").on( '.has-error > .help-block', function(){
+				$(".has-error > .help-block").html("Tiêu đề không được bỏ trống");
+			});
+				
+			
+		</script>
     <!--[if lt IE 9]>
         <script src="assets/plugins/respond.js"></script>
         <script src="assets/plugins/html5shiv.js"></script>

@@ -15,7 +15,7 @@ use yii\helpers\Url;
                             <div class="clear-both">
                                 <!-- Logo -->
                                 <div class="col-lg-4 col-md-4 hidden-xs hidden-sm">
-									<a class="logo" href="/">
+									<a class="logo" href="<?= Url::home(); ?>	">
 										<img src="image/logoevnhanoi_.png" alt="Logo" />
 									</a>
 								</div>
@@ -35,7 +35,7 @@ use yii\helpers\Url;
 																<b>Điện Thoại Liên Lạc:</b>
 															</i>
 															<span class="color_hotline">
-																<b>19001xxx - (04)xxxxxxxx</b>
+																<b>0433824317</b>
 															</span>
 															<button><?= Html::a('Đăng Nhập',  $url =  '/HoaDon_ad/backend/web/index.php') ?>
 															<br />
@@ -62,25 +62,23 @@ use yii\helpers\Url;
 										</div>
 									</div>
 					<div class="collapse navbar-collapse mega-menu navbar-responsive-collapse nav_margin">
-						 <div class="container">
-							<ul class="nav navbar-nav nav_khac">
-								<li class="dropdown" >
-									<a href="<?= Url::home(); ?> " >
-										<i class="fa fa-home"></i>
-									</a>
+						 <div class="container" >
+							<ul class="nav navbar-nav nav_khac" style="color:white !important">
+								<li class="dropdown">
+									<?php echo Html::a( $text='<i class="fa fa-home"></i>', $url =   Url::home(), $options = ['style'=>'color:white !important'] ); ?>
 								</li>
 								<li>                     
-										<?php echo Html::a( $text='Giới thiệu', $url =  Url::to(['site/about']), $options = [] ); ?>	
+										<?php echo Html::a( $text='Giới thiệu', $url =  Url::to(['site/about']), $options = ['style'=>'color:white !important'] ); ?>	
 							    </li>
 								<li>                     
-									<?php echo Html::a( $text='Tin Tức', $url =  Url::to(['site/thongbao']), $options = [] ); ?>	
+									<?php echo Html::a( $text='Thông báo', $url =  Url::to(['site/thongbao', 'i'=>0]), $options = ['style'=>'color:white !important'] ); ?>	
 									
 								</li>
 								<li>                     
-									<?php echo Html::a( $text='Liên hệ', $url =  Url::to(['site/contact']), $options = [] ); ?>	
+									<?php echo Html::a( $text='Liên hệ', $url =  Url::to(['site/contact']), $options = ['style'=>'color:white !important'] ); ?>	
 								</li>
-				</ul>
-				</div><!--/end container-->
+							</ul>
+						</div><!--/end container-->
 		
 					</div>
 

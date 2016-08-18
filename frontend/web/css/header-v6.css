@@ -1423,10 +1423,10 @@
 }
 .navbar{
 	background-color:#091E50 !important;
-	background: -webkit-linear-gradient(#091E50, #0047b3) !important; /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(#091E50, #0047b3) !important; /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#091E50, #0047b3) !important; /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#091E50, #0047b3) !important; /* Standard syntax */
+	/*background: -webkit-linear-gradient(#091E50, #1a75ff) !important; /* For Safari 5.1 to 6.0 */*/
+    /*background: -o-linear-gradient(#091E50, #1a75ff) !important; /* For Opera 11.1 to 12.0 */*/
+    /*background: -moz-linear-gradient(#091E50, #1a75ff) !important; /* For Firefox 3.6 to 15 */*/
+    /*background: linear-gradient(#091E50, #1a75ff) !important; /* Standard syntax */*/
 }
 
 /*--------------------------------------------------

@@ -1,9 +1,11 @@
 <?php
 namespace backend\controllers;
-
+use yii\base\Security;
 use app\Models\News;
 use app\Models\User;
 use app\Models\Qa;
+use app\Models\Hopdong;
+use app\Models\Chisothang;
 use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -47,6 +49,14 @@ class SiteController extends Controller
                     ],
 					[
                         'actions' => ['contact'],
+                        'allow' => true,
+                    ],
+					[
+                        'actions' => ['thacmac'],
+                        'allow' => true,
+                    ],
+					[
+                        'actions' => ['lichsu'],
                         'allow' => true,
                     ],
 					[
@@ -134,15 +144,19 @@ class SiteController extends Controller
     {
         Yii::$app->user->logout();
 
-        return $this->goHome();
+        return $this->redirect('/HoaDon_ad/frontend/web/index.php');
     }
 	
-	public function actionThongbao(){
-		
-		$sql='SELECT `news`.anhBia, `news`.id, `news`.tieuDe, `loaithongbao`.ChuDe FROM `news`, `loaithongbao` where `news`.loaiThongBaoID=`loaithongbao`.id order by ngayDang desc';
+	public function actionThongbao($i){
+		$pagin = $i*9;
+		$sql='SELECT `news`.anhBia, `news`.id, `news`.tieuDe, `loaithongbao`.ChuDe FROM `news`, `loaithongbao` where `news`.loaiThongBaoID=`loaithongbao`.id order by ngayDang desc limit 9 offset '.$pagin.'';
 		$rows = Yii::$app->db->createCommand($sql)->queryAll();
-		
-		return $this->render('thongbao', [ 'thongbao' => $rows ]);
+		if( News::find()->count()%9==0)
+			$num=News::find()->count()/9;
+		else
+			$num=News::find()->count()/9+1;
+		settype($num, "integer");
+		return $this->render('thongbao', [ 'thongbao' => $rows,'i'=>$i,'count'=>$num ]);
 	}
 	public function actionDetail($id){
 		//$rows = News::find()->where(['id' => $id])->one();
@@ -170,6 +184,7 @@ class SiteController extends Controller
 	
 	public function actionAccount(){
 		$rows = User::find()->where(['id' => Yii::$app->user->identity->id])->one();
+		$hopdong = Hopdong::find()->where(['maKhachHang' => Yii::$app->user->identity->id])->one();
 		// $sql='SELECT `user`.id, `user`.username, `user`.phone, `user`.address, `user`.SoKhau, `chisothang`.ngayChot, `chisothang`.chiSoChot, `chisothang`.thangChot  FROM `news`, `loaithongbao`, `staff` where `news`.loaiThongBaoID=`loaithongbao`.id and `news`.nguoiDangID=`staff`.id and `news`.id='.$id.'';
 		// $rows = Yii::$app->db->createCommand($sql)->queryAll();
 		$chiSo = new Query;
@@ -182,6 +197,22 @@ class SiteController extends Controller
 		$Query->select('id,tieuDe')->from('news')->limit(3);
 		 $command = $Query->createCommand();
 		 $limit = $command->queryAll();
-		return $this->render('account',['thongbao'=>$limit,'user'=>$rows,'chiSo'=>$tienNuoc]);
+		return $this->render('account',['thongbao'=>$limit,'user'=>$rows,'chiSo'=>$tienNuoc,'hopdong'=>$hopdong]);
+	}
+	
+	public function actionThacmac(){
+		return $this->render('thacmac');
+	}
+	public function actionLichsu(){
+		$security = new Security();
+		$string = Yii::$app->request->get('string');
+		$rows = null; 
+		$start = Hopdong::find()->where(['maKhachHang'=>Yii::$app->user->identity->id])->one();
+		$date = date("Y", strtotime( $start->ngayKi));
+		settype($date,"integer");
+		if (!is_null($string)) {
+			$rows = Chisothang::find()->where(['maKhachHang'=> Yii::$app->user->identity->id])->andWhere( ['namChot'=>$string])->orderBy('thangChot')->all();
+		}
+		return $this->render('lichsu',['lichsu'=>$rows, 'string'=>$string,'start'=>$date]);
 	}
 }

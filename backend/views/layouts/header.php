@@ -15,7 +15,7 @@ use yii\helpers\Url;
                             <div class="clear-both">
                                 <!-- Logo -->
                                 <div class="col-lg-4 col-md-4 hidden-xs hidden-sm">
-									<a class="logo" href="/">
+									<a class="logo" href="<?= Url::home(); ?>">
 										<img src="image/logoevnhanoi_.png" alt="Logo" />
 									</a>
 								</div>
@@ -35,12 +35,12 @@ use yii\helpers\Url;
 																<b>Điện Thoại Liên Lạc:</b>
 															</i>
 															<span class="color_hotline">
-																<b>19001xxx - (04)xxxxxxxx</b>
+																<b>0433824317</b>
 															</span>
 															<br />
 															<?php if(!Yii::$app->user->isGuest):?>
 															<li><i class="fa fa-user">Xin chào &nbsp;<?php echo Html::a( $text=Yii::$app->user->identity->username, $url =  Url::to(['site/account']), $options = ['style'=>'color:white;font-size:16px'] ); ?> </i>&nbsp; &nbsp; &nbsp; </li>
-															<?php echo Html::a( $text='<i class="fa fa-sign-out" aria-hidden="true">Đăng Xuất</i>', $url =  Url::to(['site/logout']), $options = ['data-method'=>'post'] ); ?>	
+															<?php echo Html::a( $text='<i class="fa fa-sign-out" aria-hidden="true">Đăng xuất</i>', $url =  Url::to(['site/logout']), $options = ['data-method'=>'post'] ); ?>	
 															<?php endif ?>
 														</li>
 													</ul>
@@ -67,20 +67,18 @@ use yii\helpers\Url;
 					<div class="collapse navbar-collapse mega-menu navbar-responsive-collapse nav_margin">
 						 <div class="container">
 							<ul class="nav navbar-nav nav_khac">
-								<li class="dropdown" >
-									<a href="<?= Url::home(); ?> " >
-										<i class="fa fa-home"></i>
-									</a>
+								<li class="dropdown">
+									<?php echo Html::a( $text='<i class="fa fa-home"></i>', $url =   Url::home(), $options = ['style'=>'color:white !important'] ); ?>
 								</li>
 								<li>                     
-										<?php echo Html::a( $text='Giới thiệu', $url =  Url::to(['site/about']), $options = [] ); ?>	
+										<?php echo Html::a( $text='Giới thiệu', $url =  Url::to(['site/about']), $options = ['style'=>'color:white !important'] ); ?>	
 							    </li>
 								<li>                     
-									<?php echo Html::a( $text='Tin Tức', $url =  Url::to(['site/thongbao']), $options = [] ); ?>	
+									<?php echo Html::a( $text='Thông báo', $url =  Url::to(['site/thongbao', 'i'=>0]), $options = ['style'=>'color:white !important'] ); ?>	
 									
 								</li>
 								<li>                     
-									<?php echo Html::a( $text='Liên hệ', $url =  Url::to(['site/contact']), $options = [] ); ?>	
+									<?php echo Html::a( $text='Liên hệ', $url =  Url::to(['site/contact']), $options = ['style'=>'color:white !important'] ); ?>	
 								</li>
 				</ul>
 				</div><!--/end container-->

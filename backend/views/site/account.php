@@ -18,21 +18,14 @@ use yii\helpers\Html;
 		<div class="col-md-3">
 			<ul class="list-group sidebar-nav-v1 fa-fixed " id="sidebar-nav">
 				<li class="list-group-item ">
-					<?php echo Html::a( $text='Thông báo', $url =  Url::to(['site/thongbao']), $options = ['class'=>'accordion-toggle'] ); ?>
+					<?php echo Html::a( $text='Thông báo', $url =  Url::to(['site/thongbao','i'=>0]), $options = ['class'=>'accordion-toggle'] ); ?>
 				</li>
-				
-					<?php
-					foreach($thongbao as $thongbao):?>
-						<li class="list-group-item">
-							<a href="<?=Url::to(['site/detail'])?>&id=<?=$thongbao['id']?>" class="accordion-toggle">
-							<i class="fa fa-newspaper-o color-green"></i>
-							<?=$thongbao['tieuDe'];?></a>
-						</li>
-						
-					<?php endforeach?>		
 					
 				<li class="list-group-item ">
-					<?php echo Html::a( $text='Giải đáp thắc mắc', $url =  Url::to(['site/contact']), $options = ['class'=>'accordion-toggle'] ); ?>
+					<?php echo Html::a( $text='Giải đáp thắc mắc', $url =  Url::to(['site/thacmac']), $options = ['class'=>'accordion-toggle'] ); ?>
+				</li>
+				<li class="list-group-item ">
+					<?php echo Html::a( $text='Tra cứu hóa đơn hàng tháng', $url =  Url::to(['site/lichsu']), $options = ['class'=>'accordion-toggle'] ); ?>
 				</li>
 			</ul>
 		</div>
@@ -42,7 +35,7 @@ use yii\helpers\Html;
 				<fieldset style="background-color:#FAFAFA;">
 					<div class="row">
 						<div class="shadow-wrapper margin-bottom-60">
-							<div class="tag-box tag-box-v1 box-shadow shadow-effect-2" style="min-height:210px;">
+							<div class="tag-box tag-box-v1 box-shadow shadow-effect-2" style="height:250px;">
 								<h2>Thông tin khách hàng</h2>
 								<section class="col col-sm-12">
 									<div class="row">
@@ -73,6 +66,18 @@ use yii\helpers\Html;
 										<label class="col col-4">Số Khẩu: </label>
 										<p class="col col-8">
 											<?=$user->SoKhau?>
+										</p>
+									</div>
+									<div class="row">
+										<label class="col col-4">Mã hợp đồng: </label>
+										<p class="col col-8">
+											<?=$hopdong->maHopDong?>
+										</p>
+									</div>
+									<div class="row">
+										<label class="col col-4">Loại hợp đồng: </label>
+										<p class="col col-8">
+											<?=$hopdong->loaiHopDong?>
 										</p>
 									</div>
 
@@ -143,6 +148,7 @@ use yii\helpers\Html;
 					</div>
 				</fieldset>
 			</form>
+			
 		</div>
 	</div>
 </div>
