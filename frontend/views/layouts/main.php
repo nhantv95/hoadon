@@ -1,4 +1,3 @@
-
 <?php
 
 /* @var $this \yii\web\View */
@@ -22,7 +21,7 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title>Công Ty Nước Hà Đông</title>
     <?php $this->head() ?>
-	
+	<?= Html::csrfMetaTags() ?>
 	<script src="jquery/jquery-1.8.2.min.js"></script>
 	<script src="js/highcharts.js"></script><!-- JS Global Compulsory -->
 	<script type="text/javascript" src="jquery/jquery.min.js"></script>

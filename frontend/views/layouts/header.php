@@ -37,8 +37,14 @@ use yii\helpers\Url;
 															<span class="color_hotline">
 																<b>0433824317</b>
 															</span>
-															<button><?= Html::a('Đăng Nhập',  $url =  '/HoaDon_ad/backend/web/index.php') ?>
+															<?php if(Yii::$app->user->isGuest):?>
+																<button><?= Html::a('Đăng Nhập',  $url =  Url::to(['site/login'])) ?></button>
+															<?php endif?>
 															<br />
+															<?php if(!Yii::$app->user->isGuest):?>
+															<li><i class="fa fa-user">Xin chào &nbsp;<?php echo Html::a( $text=Yii::$app->user->identity->username, $url =  Url::to(['site/account']), $options = ['style'=>'color:white;font-size:16px'] ); ?> </i>&nbsp; &nbsp; &nbsp; </li>
+															<?php echo Html::a( $text='<i class="fa fa-sign-out" aria-hidden="true">Đăng xuất</i>', $url =  Url::to(['site/logout']), $options = ['data-method'=>'post'] ); ?>	
+															<?php endif ?>
 														</li>
 													</ul>
 													<div class="clr"></div>

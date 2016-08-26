@@ -2,6 +2,10 @@
 namespace frontend\controllers;
 
 use Yii;
+use yii\base\Security;
+use app\Models\Qa;
+use app\Models\Hopdong;
+use app\Models\Chisothang;
 use app\Models\News;
 use app\Models\User;
 use yii\base\InvalidParamException;
@@ -134,15 +138,14 @@ class SiteController extends Controller
      */
     public function actionContact()
     {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
-                Yii::$app->session->setFlash('success', 'Thank you for contacting us. We will respond to you as soon as possible.');
-            } else {
-                Yii::$app->session->setFlash('error', 'There was an error sending email.');
-            }
-
-            return $this->refresh();
+        $model = new Qa();
+        if(!Yii::$app->user->isGuest){
+            $model->khanhHangID=Yii::$app->user->identity->id;
+        }   
+        else
+            $model->khanhHangID=-1;
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(Url::home());
         } else {
             return $this->render('contact', [
                 'model' => $model,
@@ -257,6 +260,47 @@ class SiteController extends Controller
 		 $limit = $command->queryAll();
 		return $this->render('detail', ['other'=>$limit, 'news' => $rows ]);
 	}
-	
+	public function actionAccount(){
+         if(Yii::$app->user->isGuest){
+           return $this->redirect( Url::to(['site/login']));
+        }
+        $rows = User::find()->where(['id' => Yii::$app->user->identity->id])->one();
+        $hopdong = Hopdong::find()->where(['maKhachHang' => Yii::$app->user->identity->id])->one();
+        // $sql='SELECT `user`.id, `user`.username, `user`.phone, `user`.address, `user`.SoKhau, `chisothang`.ngayChot, `chisothang`.chiSoChot, `chisothang`.thangChot  FROM `news`, `loaithongbao`, `staff` where `news`.loaiThongBaoID=`loaithongbao`.id and `news`.nguoiDangID=`staff`.id and `news`.id='.$id.'';
+        // $rows = Yii::$app->db->createCommand($sql)->queryAll();
+        $chiSo = new Query;
+        $chiSo->select('ngayChot,chiSoChot,thangChot,namChot,trangThaiNop')->from('chisothang')->where(['MaKhachHang'=>Yii::$app->user->identity->id])->limit(3)->groupBy('namChot')
+        ->orderBy(['thangChot' => SORT_DESC]);
+         $command1 = $chiSo->createCommand();
+         $tienNuoc = $command1->queryAll();
+         
+        $Query = new Query;
+        $Query->select('id,tieuDe')->from('news')->limit(3);
+         $command = $Query->createCommand();
+         $limit = $command->queryAll();
+        return $this->render('account',['thongbao'=>$limit,'user'=>$rows,'chiSo'=>$tienNuoc,'hopdong'=>$hopdong]);
+    }
+    
+    public function actionThacmac(){
+         if(Yii::$app->user->isGuest){
+           return $this->redirect( Url::to(['site/login']));
+        }
+        return $this->render('thacmac');
+    }
+    public function actionLichsu(){
+        if(Yii::$app->user->isGuest){
+           return $this->redirect( Url::to(['site/login']));
+        }
+        $security = new Security();
+        $string = Yii::$app->request->get('string');
+        $rows = null; 
+        $start = Hopdong::find()->where(['maKhachHang'=>Yii::$app->user->identity->id])->one();
+        $date = date("Y", strtotime( $start->ngayKi));
+        settype($date,"integer");
+        if (!is_null($string)) {
+            $rows = Chisothang::find()->where(['maKhachHang'=> Yii::$app->user->identity->id])->andWhere( ['namChot'=>$string])->orderBy('thangChot')->all();
+        }
+        return $this->render('lichsu',['lichsu'=>$rows, 'string'=>$string,'start'=>$date]);
+    }
 	
 }

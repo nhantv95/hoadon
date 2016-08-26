@@ -7,9 +7,6 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
-
-	
-
 ?>
 <div class="container content content-theme margin-top-20 margin-bottom-20">
 	<div class="row">
@@ -23,6 +20,16 @@ use yii\captcha\Captcha;
 						Địa chỉ: Số 2A phố Nguyễn Trãi, Phường Nguyễn Trãi, Quận Hà Đông, Hà Nội<br>
 						Số điện thoại: 0433824317<br>
 						 Fax: 0433119046
+					</div>
+					<hr>
+					<div class = "headline headline-md">
+						<h2>Thắc mắc cần giải đáp</h2>
+					</div>
+					<div class="margin-top-20">
+						<?= $this->render('_form', [
+							'model' => $model,
+						]) ?>
+						
 					</div>
 				</div>
 				<div class="col col-sm-7 col-lg-7">
