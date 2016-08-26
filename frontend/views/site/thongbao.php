@@ -27,8 +27,8 @@ use yii\helpers\Url;
 									?>
 								</div>
 							</div>
-							<div class="block-grid-v2-info rounded-bottom>">
-								<h3><a href="<?=Url::to(['site/detail'])?>&id=<?=$thongbao['id']?>"><?=$thongbao['tieuDe'] ?> </a><h3>
+							<div class="block-grid-v2-info rounded-bottom>"  style="min-height:98px">
+								<h4><a href="<?=Url::to(['site/detail'])?>&id=<?=$thongbao['id']?>"><?=$thongbao['tieuDe'] ?> </a><h4>
 							</div>
 						</div>
 				<?php endforeach;?>

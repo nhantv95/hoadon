@@ -27,5 +27,15 @@
             <!--/footer-->
             
         </div>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("*[for ='qa-tieude']").html("Tiêu Đề");
+                $("*[for ='qa-noidung']").html("Nội Dung");
+                
+            });
+            $(".help-block").on('change', '.help-block',function(){
+                $('.help-block').html("Trường không được bỏ trống");
+            });
+        </script>
 		
         <!--=== End Footer Version 1 ===-->

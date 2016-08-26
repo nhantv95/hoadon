@@ -42,12 +42,18 @@ use yii\widgets\Pjax;
 								
 										<?php//var_dump($string)?>
 										<div class="col col-sm-12">	
-											<div class="col col-sm-1.5">
+											<div class="col col-sm-2">
 												<label>
 													Chọn năm
 												</label>
 											</div>
-											<?php for($a=$start;$a<=date('Y');$a++):?>
+											<?php 
+												// echo "year";
+												// echo $start;
+											$year = intval(date('Y'));
+											//	 var_dump($year);
+											 ?>
+											<?php for($a=$year;$a>=$start;$a--):?>
 												<div class="col col-sm-1">
 												<?php echo Html::a('<button class="btn">'.$a.'</button>', ['site/lichsu','string'=>$a], []); ?>
 												</div>
@@ -83,7 +89,7 @@ use yii\widgets\Pjax;
 												<td><?=$lichsu->thangChot?> </td>
 												<td><?=$lichsu->namChot?> </td>
 												<td><?=$lichsu->chiSoChot?> </td>
-												<td><?=$lichsu->chiSoChot*5000?> d </td>
+												<td><?=$lichsu->chiSoChot*5000?> đồng </td>
 												<td><?=$lichsu->trangThaiNop?> </td>
 												<?php 
 												array_push($thang, strval($lichsu->thangChot)."-".strval($lichsu->namChot));

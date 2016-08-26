@@ -99,7 +99,7 @@ use yii\helpers\Url;
 			<div class="tp-banner">
 				<ul>
 
-					<li class="revolution-mch-1" data-transition="fade" data-slotamount="5" data-masterspeed="1000" data-title='"Slide"+"1"'>
+					<li class="revolution-mch-1" data-transition="fade" data-slotamount="5" data-masterspeed="1000" data-title='Slide 1'>
 						<!-- MAIN IMAGE -->
 						<img src="/HoaDon_ad/frontend/web/image/banner.jpg" alt="darkblurbg" data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat" />
 						<div class="tp-caption revolution-ch1 sft start"
@@ -139,7 +139,7 @@ use yii\helpers\Url;
 							 data-captionhidden="off"
 							 style="z-index: 6"></div>
 					</li>
-					<li class="revolution-mch-1" data-transition="fade" data-slotamount="5" data-masterspeed="1000" data-title='"Slide"+"2"'>
+					<li class="revolution-mch-1" data-transition="fade" data-slotamount="5" data-masterspeed="1000" data-title='"Slide 2"'>
 					<!-- MAIN IMAGE -->
 						<img src="image/banner_blue.jpg" alt="darkblurbg" data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat" />
 						<div class="tp-caption revolution-ch1 sft start"
@@ -179,7 +179,7 @@ use yii\helpers\Url;
 							 data-captionhidden="off"
 							 style="z-index: 6"></div>
 					</li>
-				<li class="revolution-mch-1" data-transition="fade" data-slotamount="5" data-masterspeed="1000" data-title='"Slide"+"3"'>
+				<li class="revolution-mch-1" data-transition="fade" data-slotamount="5" data-masterspeed="1000" data-title='"Slide 3"'>
 					<!-- MAIN IMAGE -->
 					<img src="image/Banner_homeevnhanoi04.jpg" alt="darkblurbg" data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat" />
 					<div class="tp-caption revolution-ch1 sft start"

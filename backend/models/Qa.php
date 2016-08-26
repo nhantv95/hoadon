@@ -28,9 +28,10 @@ class Qa extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['khanhHangID', 'tieuDe', 'noiDung'], 'required'],
+            [['khanhHangID', 'tieuDe', 'noiDung'], 'required','message'=>'Trường không được bỏ trống'],
             [['khanhHangID'], 'integer'],
             [['tieuDe', 'noiDung'], 'string'],
+
         ];
     }
 

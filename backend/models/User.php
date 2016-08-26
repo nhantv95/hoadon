@@ -39,7 +39,7 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['username', 'auth_key', 'password_hash', 'phone', 'SoKhau', 'isDeleted'], 'required'],
+            [['username', 'auth_key', 'password_hash', 'phone', 'SoKhau', 'isDeleted'], 'required','message'=>'Trường không được bỏ trống'],
             [['status', 'SoKhau', 'isDeleted'], 'integer'],
             [['gender'], 'string'],
             [['dob', 'created_at', 'updated_at'], 'safe'],

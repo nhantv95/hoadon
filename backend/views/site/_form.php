@@ -14,7 +14,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'tieuDe')->textInput(['required']) ?>
 
-    <?= $form->field($model, 'noiDung')->textInput(['required']) ?>
+    <?= $form->field($model, 'noiDung')->textArea(['required']) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Gửi', ['class' =>  'btn btn-success']) ?>

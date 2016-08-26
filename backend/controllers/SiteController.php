@@ -170,6 +170,9 @@ class SiteController extends Controller
 	}
 	
 	public function actionContact(){
+         if(Yii::$app->user->isGuest){
+           return $this->redirect( Url::to(['site/login']));
+        }
 		$model = new Qa();
 		$model->khanhHangID=Yii::$app->user->identity->id;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -183,6 +186,9 @@ class SiteController extends Controller
 	}
 	
 	public function actionAccount(){
+         if(Yii::$app->user->isGuest){
+           return $this->redirect( Url::to(['site/login']));
+        }
 		$rows = User::find()->where(['id' => Yii::$app->user->identity->id])->one();
 		$hopdong = Hopdong::find()->where(['maKhachHang' => Yii::$app->user->identity->id])->one();
 		// $sql='SELECT `user`.id, `user`.username, `user`.phone, `user`.address, `user`.SoKhau, `chisothang`.ngayChot, `chisothang`.chiSoChot, `chisothang`.thangChot  FROM `news`, `loaithongbao`, `staff` where `news`.loaiThongBaoID=`loaithongbao`.id and `news`.nguoiDangID=`staff`.id and `news`.id='.$id.'';
@@ -201,9 +207,15 @@ class SiteController extends Controller
 	}
 	
 	public function actionThacmac(){
+         if(Yii::$app->user->isGuest){
+           return $this->redirect( Url::to(['site/login']));
+        }
 		return $this->render('thacmac');
 	}
 	public function actionLichsu(){
+        if(Yii::$app->user->isGuest){
+           return $this->redirect( Url::to(['site/login']));
+        }
 		$security = new Security();
 		$string = Yii::$app->request->get('string');
 		$rows = null; 
